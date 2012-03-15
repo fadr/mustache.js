@@ -56,3 +56,10 @@ desc "Remove temporary files."
 task :clean do
   sh "git clean -fdx"
 end
+
+task :minify do
+  mmjs = "mustache.min.js"
+  `echo "/*! Version: 0.5.1-dev */" > #{mmjs}`
+  `uglifyjs mustache.js >> #{mmjs}`
+  puts "Created #{mmjs}"
+end
